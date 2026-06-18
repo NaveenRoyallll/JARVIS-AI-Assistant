@@ -1,6 +1,7 @@
 import speech_recognition as sr
 import webbrowser
 import pyttsx3
+import MusicLibrary
 #pip install pocketsphinx
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
@@ -8,6 +9,7 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 def processcommand(c):
+    print(c)
     if "open google" in c.lower():
         webbrowser.open("https://google.com")
     elif "open facebook" in c.lower():
@@ -30,10 +32,10 @@ if __name__ == "__main__":
         try:
             with sr.Microphone() as source:
                 print("listening...")
-                audio = r.listen(source,timeout=2,phrase_time_limit=1)
+                audio = r.listen(source,timeout=3,phrase_time_limit=4)
             word = r.recognize_google(audio)
-            if(word.lower()=="jarvis"):
-                speak("Yeah")
+            if("jarvis" in word.lower()):
+                speak("Ya")
                 with sr.Microphone() as source:
                     print("Jarvis Active")
                     audio = r.listen(source)
