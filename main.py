@@ -2,7 +2,10 @@ import speech_recognition as sr
 import webbrowser
 import pyttsx3
 import MusicLibrary
+import requests
+
 #pip install pocketsphinx
+newsapi = "6cf278628fdb4fa98cce3b8fdbabd98c"
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
 def speak(text):
@@ -18,6 +21,23 @@ def processcommand(c):
         webbrowser.open("https://youtube.com")
     elif "open linkedin" in c.lower():
         webbrowser.open("https://linkedin.com")
+    elif c.lower().startswith("play"):
+        song = c.lower().split(" ")[1]
+        link = MusicLibrary.music[song]
+        webbrowser.open(link)
+    elif "news" in c.lower():
+        r = requests.get("https://newsapi.org/v2/top-headlines?country=in&apiKey=6cf278628fdb4fa98cce3b8fdbabd98c")
+        if r.status_code == 200:
+             # Parse the JSON response 
+              data = r.json() 
+             #Extract the articles 
+              articles = data.get('articles', []) 
+             #  Print the headlines 
+              for article in articles:
+                  speak(article['title'])
+
+
+
 
 if __name__ == "__main__":
     speak("Initializing Jarvis....")
@@ -34,7 +54,7 @@ if __name__ == "__main__":
                 print("listening...")
                 audio = r.listen(source,timeout=3,phrase_time_limit=4)
             word = r.recognize_google(audio)
-            if("jarvis" in word.lower()):
+            if "jarvis" in word.lower():
                 speak("Ya")
                 with sr.Microphone() as source:
                     print("Jarvis Active")
