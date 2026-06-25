@@ -5,12 +5,15 @@ import MusicLibrary
 import requests
 
 #pip install pocketsphinx
-newsapi = "6cf278628fdb4fa98cce3b8fdbabd98c"
+
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
+newsapi = "6cf278628fdb4fa98cce3b8fdbabd98c"
 def speak(text):
+    print(f"Speaking: {text}")
     engine.say(text)
     engine.runAndWait()
+
 def processcommand(c):
     print(c)
     if "open google" in c.lower():
@@ -26,16 +29,19 @@ def processcommand(c):
         link = MusicLibrary.music[song]
         webbrowser.open(link)
     elif "news" in c.lower():
-        r = requests.get("https://newsapi.org/v2/top-headlines?country=in&apiKey=6cf278628fdb4fa98cce3b8fdbabd98c")
-        if r.status_code == 200:
-             # Parse the JSON response 
-              data = r.json() 
-             #Extract the articles 
-              articles = data.get('articles', []) 
-             #  Print the headlines 
-              for article in articles:
-                  speak(article['title'])
-
+        speak("Fetching latest news")
+        r = requests.get(
+            f"https://newsapi.org/v2/everything?q=India&sortBy=publishedAt&language=en&apiKey={newsapi}"
+        )
+        data = r.json()
+        articles = data.get("articles", [])
+        if not articles:
+            speak("Sorry, I couldn't find any news.")
+        else:
+            for article in articles[:5]:
+                print(article["title"])
+                speak(article["title"])
+    
 
 
 
