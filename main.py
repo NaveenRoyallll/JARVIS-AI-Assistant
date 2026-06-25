@@ -3,12 +3,16 @@ import webbrowser
 import pyttsx3
 import MusicLibrary
 import requests
+import os
+from dotenv import load_dotenv
 
 #pip install pocketsphinx
+load_dotenv()
+newsapi = os.getenv("NEWS_API_KEY")
 
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
-newsapi = "6cf278628fdb4fa98cce3b8fdbabd98c"
+# newsapi = "6cf278628fdb4fa98cce3b8fdbabd98c"
 def speak(text):
     print(f"Speaking: {text}")
     engine.say(text)
@@ -51,14 +55,18 @@ if __name__ == "__main__":
         # Listen for the wake word "Jarvis"
         # obtain audio from the microphone
 
-        r = sr.Recognizer()
-
+        r = recognizer
+        
         # recognize speech using Sphinx
         print("Recognizing....")
         try:
+            # with sr.Microphone() as source:
+            #     print("listening...")
+            #     audio = r.listen(source,timeout=3,phrase_time_limit=4)
             with sr.Microphone() as source:
-                print("listening...")
-                audio = r.listen(source,timeout=3,phrase_time_limit=4)
+                    r.adjust_for_ambient_noise(source, duration=0.5)
+                    print("Listening...")
+                    audio = r.listen(source, timeout=3, phrase_time_limit=4)
             word = r.recognize_google(audio)
             if "jarvis" in word.lower():
                 speak("Ya")
