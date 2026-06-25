@@ -5,6 +5,7 @@ import MusicLibrary
 import requests
 import os
 from dotenv import load_dotenv
+from gemini import ask_gemini
 
 #pip install pocketsphinx
 load_dotenv()
@@ -24,6 +25,8 @@ def processcommand(c):
         webbrowser.open("https://google.com")
     elif "open facebook" in c.lower():
         webbrowser.open("https://facebook.com")
+    elif "open github" in c.lower():
+        webbrowser.open("https://github.com")
     elif "open youtube" in c.lower():
         webbrowser.open("https://youtube.com")
     elif "open linkedin" in c.lower():
@@ -45,6 +48,11 @@ def processcommand(c):
             for article in articles[:5]:
                 print(article["title"])
                 speak(article["title"])
+    else:
+        speak("Thinking...")
+        reply = ask_gemini(c)
+        print(reply)
+        speak(reply)
     
 
 
