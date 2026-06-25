@@ -51,6 +51,8 @@ def processcommand(c):
     else:
         speak("Thinking...")
         reply = ask_gemini(c)
+        if len(reply) > 500:
+            reply = reply[:500]
         print(reply)
         speak(reply)
     
