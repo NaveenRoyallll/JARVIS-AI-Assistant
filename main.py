@@ -6,6 +6,8 @@ import requests
 import os
 from dotenv import load_dotenv
 from gemini import ask_gemini
+from datetime import datetime
+weather_api = os.getenv("WEATHER_API_KEY")
 
 #pip install pocketsphinx
 load_dotenv()
@@ -48,6 +50,38 @@ def processcommand(c):
             for article in articles[:5]:
                 print(article["title"])
                 speak(article["title"])
+    elif "time" in c.lower():
+        current_time = datetime.now().strftime("%I:%M %p")
+        speak(f"The current time is {current_time}")
+    elif "date" in c.lower():
+        today = datetime.now().strftime("%A, %d %B %Y")
+        speak(f"Today is {today}")
+    elif "day" in c.lower():
+        now = datetime.now()
+        current_time = now.strftime("%I:%M %p")
+        today = now.strftime("%A, %d %B %Y")
+        speak(f"Today is {today}. The time is {current_time}.")
+    elif "weather" in c.lower():
+        city = c.lower().replace("weather in", "").strip()
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={weather_api}&units=metric"
+        response = requests.get(url)
+        data = response.json()
+
+        if data["cod"] == 200:
+            temperature = data["main"]["temp"]
+            description = data["weather"][0]["description"]
+            humidity = data["main"]["humidity"]
+
+            speak(
+                f"The current temperature in {city} is {temperature} degrees Celsius."
+            )
+
+            speak(f"The weather is {description}.")
+
+            speak(f"The humidity is {humidity} percent.")
+
+        else:
+            speak("Sorry, I couldn't fetch the weather.")
     else:
         speak("Thinking...")
         reply = ask_gemini(c)
