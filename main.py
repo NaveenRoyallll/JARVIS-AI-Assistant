@@ -15,7 +15,6 @@ newsapi = os.getenv("NEWS_API_KEY")
 
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
-# newsapi = "6cf278628fdb4fa98cce3b8fdbabd98c"
 def speak(text):
     print(f"Speaking: {text}")
     engine.say(text)
