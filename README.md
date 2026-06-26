@@ -1,224 +1,260 @@
-🤖 Jarvis AI Assistant
+# 🤖 JARVIS AI - Personal Voice Assistant
 
-A Python-based voice-controlled AI assistant inspired by Iron Man's JARVIS.
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Active-success)
+![Version](https://img.shields.io/badge/Version-1.0-orange)
 
-Jarvis can listen to voice commands, open websites, play music, and read the latest news using voice responses.
-
----
-
-🚀 Features
-
-🎙 Voice Activation
-
-- Wake word detection using:
-  - "Jarvis"
-
-🌐 Open Websites
-
-Voice commands:
-
-- Open Google
-- Open YouTube
-- Open Facebook
-- Open LinkedIn
-
-🎵 Music Playback
-
-Play songs directly from a predefined music library.
-
-Example:
-
-- Play Believer
-- Play Shape of You
-
-📰 Latest News
-
-Fetches and reads the latest headlines using NewsAPI.
-
-Example:
-
-- News
-- Tell me the news
-- Latest news
-
-🔊 Text-to-Speech
-
-Jarvis responds using voice output powered by pyttsx3.
-
-🎤 Speech Recognition
-
-Converts spoken commands into text using Google Speech Recognition.
+An intelligent voice-controlled personal assistant built with Python. JARVIS can recognize voice commands, speak responses, fetch real-time information, control your browser, play music, and answer questions using Google's Gemini AI.
 
 ---
 
-🛠 Tech Stack
+# ✨ Features
 
-Language
+### 🎤 Voice Recognition
 
-- Python 3.11+
+* Wake word detection ("Jarvis")
+* Speech-to-text using Google Speech Recognition
+* Natural voice interaction
 
-Libraries
+### 🔊 Text-to-Speech
 
-- SpeechRecognition
-- PyAudio
-- pyttsx3
-- Requests
-- WebBrowser
+* Speaks responses naturally
+* Voice feedback for every command
 
-APIs
+### 🌐 Web Automation
 
-- NewsAPI
+* Open Google
+* Open YouTube
+* Open Facebook
+* Open LinkedIn
+
+### 🎵 Music Player
+
+* Play songs from your personal music library
+
+### 📰 Latest News
+
+* Fetches and reads the latest news headlines
+
+### 🌤️ Weather
+
+* Provides live weather updates
+* Temperature
+* Weather description
+
+### 🕒 Time & Date
+
+* Current time
+* Current date
+
+### 🤖 Gemini AI Integration
+
+* Ask any question
+* AI-powered conversations
+* General knowledge
+* Coding assistance
+* Educational support
+
+### 🔐 Secure API Keys
+
+* Uses `.env` file
+* API keys are never stored in source code
 
 ---
 
-📂 Project Structure
+# 🛠️ Technologies Used
 
-Jarvis-AI/
+* Python 3.11
+* SpeechRecognition
+* PyAudio
+* pyttsx3
+* Google Gemini API
+* OpenWeatherMap API
+* NewsAPI
+* Requests
+* python-dotenv
+* Webbrowser
+
+---
+
+# 📂 Project Structure
+
+```text
+JARVIS AI/
+│
+├── .env
+├── .gitignore
+├── README.md
+├── requirements.txt
 │
 ├── main.py
+├── gemini.py
 ├── MusicLibrary.py
-├── requirements.txt
-├── README.md
+├── test_gemini.py
 │
-└── assets/
+└── .venv/
+```
 
 ---
 
-⚙️ Installation
+# 🚀 Installation
 
-1. Clone Repository
+## Clone the repository
 
-git clone https://github.com/yourusername/Jarvis-AI.git
+```bash
+git clone https://github.com/your-username/JARVIS-AI.git
+cd JARVIS-AI
+```
 
-cd Jarvis-AI
+---
 
-2. Create Virtual Environment
+## Create Virtual Environment
 
+```bash
 python -m venv .venv
+```
 
-3. Activate Environment
+Activate it
 
-Windows:
+### Windows
 
+```bash
 .venv\Scripts\activate
+```
 
-Linux / Mac:
+### Linux / macOS
 
+```bash
 source .venv/bin/activate
+```
 
-4. Install Dependencies
+---
 
+## Install Dependencies
+
+```bash
 pip install -r requirements.txt
-
-Or
-
-pip install SpeechRecognition
-pip install PyAudio
-pip install pyttsx3
-pip install requests
+```
 
 ---
 
-🔑 Configure News API
+# 🔑 Configure API Keys
 
-Get a free API key from:
+Create a file named
 
-https://newsapi.org
+```text
+.env
+```
 
-Replace:
+Add:
 
-newsapi = "YOUR_API_KEY"
-
-with your API key.
-
----
-
-🎵 Music Library Setup
-
-Create a file named:
-
-MusicLibrary.py
-
-Example:
-
-music = {
-    "believer": "https://www.youtube.com/watch?v=7wtfhZwyrcc",
-    "shapeofyou": "https://www.youtube.com/watch?v=JGwWNGJdvx8"
-}
+```env
+NEWS_API_KEY=YOUR_NEWS_API_KEY
+WEATHER_API_KEY=YOUR_WEATHER_API_KEY
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+```
 
 ---
 
-▶️ Run Project
+# ▶️ Run the Project
 
+```bash
 python main.py
+```
 
 ---
 
-🗣 Example Commands
+# 🎙️ Example Voice Commands
 
-Open Websites
+## Browser
 
-Jarvis
-Open Google
+* Jarvis open Google
+* Jarvis open YouTube
+* Jarvis open Facebook
+* Jarvis open LinkedIn
 
-Jarvis
-Open YouTube
+## Music
 
-Play Music
+* Jarvis play believer
 
-Jarvis
-Play Believer
+## Weather
 
-Get News
+* Jarvis weather
 
-Jarvis
-News
+## News
 
----
+* Jarvis news
 
-🔮 Future Enhancements
+## Time
 
-- AI Chat Integration (OpenAI/Gemini)
-- Weather Updates
-- WhatsApp Messaging
-- Open Desktop Applications
-- Screenshots
-- File Management
-- Email Sending
-- Calendar Integration
-- Smart Home Control
-- Personal Memory System
+* Jarvis what is the time
 
----
+## Date
 
-🐞 Known Issues
+* Jarvis what is today's date
 
-- Requires internet connection for speech recognition.
-- PyAudio installation can be difficult on some Windows systems.
-- Background noise may affect recognition accuracy.
+## AI
+
+* Jarvis who is Elon Musk
+
+* Jarvis explain quantum computing
+
+* Jarvis write Python code for a linked list
 
 ---
 
-🤝 Contributing
 
-Contributions are welcome.
+# 📦 Future Features
+
+* Desktop GUI
+* WhatsApp Automation
+* Email Assistant
+* Open Installed Applications
+* Screenshot Capture
+* Camera Integration
+* Face Recognition
+* PDF Reader
+* Browser Automation
+* Calendar Integration
+* Reminder System
+* Conversation Memory
+* Smart Home Control
+* Offline Speech Recognition
+* AI Agent Automation
+
+---
+
+# 🤝 Contributing
+
+Contributions, feature requests, and suggestions are welcome.
 
 1. Fork the repository
-2. Create a new branch
-3. Commit changes
-4. Push changes
-5. Create a Pull Request
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
 ---
 
-👨‍💻 Author
+# 📜 License
 
-Naveen Kumar Veeramsetty
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Author
+
+**Naveen Kumar Veeramsetty**
 
 B.Tech Computer Science Engineering
 
-Passionate about AI, Full Stack Development, and Building Real-World Projects.
+GitHub: https://github.com/NaveenRoyallll
 
 ---
 
-⭐ If you like this project, don't forget to star the repository!
+## ⭐ Support
+
+If you like this project, please consider giving it a ⭐ on GitHub.
+
+It motivates me to build more AI projects.
